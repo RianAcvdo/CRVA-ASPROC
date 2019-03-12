@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Agape.ReservacionVhl.WpfUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UsuarioEmail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">@gmail.com</Value>
+    </Setting>
+    <Setting Name="NombreUsuario" Type="System.String" Scope="User">
+      <Value Profile="(Default)">vacio</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

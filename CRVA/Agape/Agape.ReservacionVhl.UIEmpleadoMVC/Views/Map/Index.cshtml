@@ -1,0 +1,382 @@
+﻿@model Agape.ReservacionVhl.EN.Car
+@{
+    ViewBag.Title = "CRVA - Realizar Reservación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<script src="~/Scripts/google/mapaGoogle.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCrLYdbcvbD9K9inzcK8T7y47k9Qmhs&callback=initMap&language=es&region=sv" async defer></script>
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3o7_NYDbqKmjGlBKPk5DaaDaKaTMozDE&callback=initMap&language=es&region=sv" async defer></script>*@
+
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+    }
+    .tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #147bc6;
+    will-change: left, right;
+}
+    .tabs .tab a {
+    color: #0089ec;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: color .28s ease;
+}
+    .tabs .tab a:hover {
+    color: #0089ec;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: color .28s ease;
+}
+
+    .crva-image {
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    /*estilos fecha*/
+    .picker__close, .picker__today, .picker__clear {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    color: #26a69a;
+        border: none;
+    border-radius: 2px;
+    color:darkslategrey;
+}
+
+.picker__close:hover, .picker__today:hover, .picker__clear:hover {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    color: #26a69a;
+        border: none;
+    border-radius: 2px;
+    color:darkorange;
+}
+    .btn-flat {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    color: #343434;
+    cursor: pointer;
+    -webkit-transition: background-color .2s;
+    transition: background-color .2s;
+}
+    .btn, .btn-large, .btn-floating, .btn-large, .btn-flat {
+    font-size: 1rem;
+    outline: 0;
+}
+    .waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+
+    /*Picker*/ /*botones*/
+    .picker__date-display {
+    text-align: left;
+    background-color: #26a69a;
+    color: #fff;
+    padding: 18px;
+    font-weight: 300;
+}
+    .picker__weekday-display {
+    font-weight: 500;
+    font-size: 2.8rem;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+    .picker__date-display {
+    text-align: left;
+    background-color: #26a69a;
+    color: #fff;
+    padding: 18px;
+    font-weight: 300;
+}
+    .picker__month-display {
+    font-size: 2.8rem;
+    font-weight: 500;
+}
+    .picker__day-display {
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+    /*Estilos nuevos botones*/
+    .picker__close, .picker__today, .picker__clear {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    color: #908888;
+}
+    .picker__date-display {
+    text-align: left;
+    background-color: #514c4c;
+    color: #fff;
+    padding: 18px;
+    font-weight: 300;
+}
+ghpages-materialize.css:1
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.picker__day.picker__day--today {
+    color: rgba(255, 162, 32, 0.96);
+}
+.picker__day--highlighted:hover, .picker--focused .picker__day--highlighted {
+    cursor: pointer;
+}
+ghpages-materialize.css:11
+.picker__day--infocus {
+    color: rgba(0,0,0,0.87);
+    letter-spacing: -.3px;
+    padding: 0.75rem 0;
+    font-weight: 400;
+    border: 1px solid transparent;
+}
+.picker__weekday-display {
+    font-weight: 500;
+    font-size: 2.8rem;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+ghpages-materialize.css:1
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+Inherited from div.picker__date-display
+ghpages-materialize.css:11
+.picker__date-display {
+    text-align: left;
+    background-color: #514c4c;
+    color: #fff;
+    padding: 18px;
+    font-weight: 300;
+}
+.picker__weekday-display {
+    background-color: #514c4c;
+    padding: 10px;
+    font-weight: 200;
+    letter-spacing: .5;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+</style>
+
+<div class="col-lg-12 col-md-12 col-sm-12" style="padding-top:10px;">
+    <div class="card text-black border-0">
+        <div class="card-header bg-secondary text-white">Establecer recorrido</div>
+        <div class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputEmail4" class="col-form-label">Lugar de partida</label>
+                        <input type="text" id="start" class="form-control" required />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword4" class="col-form-label">Destino final</label>
+                        <input type="text" id="end" class="form-control" required/>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword4" class="col-form-label">Parada</label>
+                        <input type="text" id="waypoints" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword4" class="col-form-label" style="color:transparent;">Parada</label>
+                        <a class="btn btn-primary btn-block text-white" id="btnBuscar"><span class="oi oi-magnifying-glass"></span>  Trazar recorrido</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-8 col-md-6 col-sm-12">
+    <div class="card border-0">
+        <div class="card-header bg-secondary text-white">Recorrido trazado</div>
+        <div class="card-body">
+            <div id="map"></div>
+        </div>
+
+        <a id="mapa"></a>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+    
+    <div class="card text-black border-0">
+        <div class="card-header bg-secondary text-white">Confirmar reservación</div>
+        @{
+            var Base64 = Convert.ToBase64String(Model.Image);
+            var ImgDb = string.Format("data:image/gif;base64,{0}", Base64);
+
+            var ConvertMarca = Convert.ToBase64String(Model.Mark.Picture);
+            var ImgMarca = string.Format("data:image/gif;base64,{0}", ConvertMarca);
+        }
+        <img class="card-img-top" src="@ImgDb" alt="Card image cap" height="180" style="width:80%; margin-left:10%;margin-right:10%; padding-top:8px;">
+        <div class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input id="txtIdEmpleado" type="hidden" value="@Session["UserID"]" />
+                        <input id="txtIdCar" type="hidden" value="@Model.CarID" />
+                        <div id="output" class="text-justify"></div>
+                        <input id="KMS" type="hidden" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4" class="col-form-label">Fecha de reservacion</label>
+                        <input type="text" id="txtDate" class="datepicker form-control" placeholder="Fecha de reservación" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                    </div>
+                    <button class="btn btn-success btn-block" id="btnGuardar"><span class="oi oi-map-marker"></span>  Aceptar</button>
+                    <a class="btn btn-danger btn-block text-white" href="@Url.Action("Index","Catalogo")"><span class="oi oi-thumb-down"></span>  Cancelar</a>                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar goes here -->
+<!-- Page Layout here -->
+@*<div class="row">
+    <div class="col s12 m4 l4">
+        <br />
+        <div class="col s12 m12 l12 hide-on-large-only">
+            <a href="@Url.Action("Index", "Catalogo")" class="btn waves-block blue darken-4 white-text">Cancelar</a>
+        </div>
+        <div class="row indicator">
+            <br /><br />
+            <div class="col s12 indicator">
+                <ul class="tabs">
+                    <li class="tab col s3 black-text"><a href="#test1">Paso 1</a></li>
+                    <li class="tab col s3"><a href="#test2">paso 2</a></li>
+                </ul>
+            </div>
+            <div id="test1" class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <center>
+                            <span class="card-title">Dirección</span>
+                        </center>
+
+                        <br />
+                        <b>Lugar de Partida: </b>
+                        <input type="text" id="start" required/>
+
+
+                        <b>Destino Final: </b>
+                        <input type="text" id="end" required/>
+
+                        <b>Parada: </b>
+                        <input type="text" id="waypoints" required />
+
+                    </div>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn s12 blue darken-4" id="btnBuscar"><i class="material-icons right">search</i>Buscar Recorrido</a>
+                    </div>
+                </div>
+            </div>
+            <div id="test2" class="col s12">
+                <div class="card">
+                    <div class="card-content black-text">
+                        <strong>Empleado : @Session["Name"].ToString()</strong>
+                        <input id="txtIdEmpleado" type="hidden" value="@Session["UserID"]" />
+                        <br />
+                        <strong>Marca de Vehiculo :  @Html.DisplayFor(model => model.Mark.Name)</strong>
+                        <input id="txtIdCar" type="hidden" value="@Model.CarID" />
+                        <br />
+                        <strong>Matricula: @Html.DisplayFor(model => model.Code)</strong>
+                        <br />
+                        <strong>Detalles: @Html.DisplayFor(model => model.Details)</strong>
+                        <br />
+                        <row>
+                            <strong>Fecha de Reservación: </strong><br />
+                            <i class="material-icons">event_note</i>
+                            <input type="text" id="txtDate" class="datepicker" placeholder="Fecha de reservación" required>
+                        </row>
+                        <div id="output">
+                            
+                        </div>
+                        <input id="KMS" type="hidden" />
+                    </div>
+                    <div class="card-action">
+                        <div class="row">
+                            <div class="col s6 m6 l6">
+                                <button class="btn waves-block blue darken-4" id="btnGuardar">Aceptar</button>
+                                
+                            </div>
+                            <div class="col s6 m6 l6">
+                                <a href="@Url.Action("Index", "Catalogo")" class="btn waves-block blue darken-4 white-text hide-on-med-and-down">Cancelar</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m8 l8">
+        <div class="row">
+            <div class="col s12 m10 offset-m1">
+                <div class="card">
+                    <div class="card-content">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+            <a id="mapa"></a>
+        </div>
+    </div>
+</div>*@
+
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false, // Close upon selecting a date,
+        min: +3
+    });
+   // $(document).ready(function () {
+       // $('ul.tabs').tabs();
+        //$('ul.tabs').tabs('select_tab', 'tab_id');
+   // });
+</script>
+
+
+
+

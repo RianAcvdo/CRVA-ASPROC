@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agape.ReservacionVhl.EN", "Agape.ReservacionVhl.EN\Agape.ReservacionVhl.EN.csproj", "{6569D5FA-EDCE-4D02-9BCD-CB92D4BD4639}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agape.ReservacionVhl.DAL", "Agape.ReservacionVhl.DAL\Agape.ReservacionVhl.DAL.csproj", "{761F1EDE-EE3B-4E72-ABE5-11DF49B9CED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agape.ReservacionVhl.WpfUI", "Agape.ReservacionVhl.WpfUI\Agape.ReservacionVhl.WpfUI.csproj", "{DF85BE68-557E-4296-A814-1A050A8127B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agape.ReservacionVhl.BL", "Agape.ReservacionVhl.BL\Agape.ReservacionVhl.BL.csproj", "{CEF51344-91F4-4D66-89FF-57FE1B8DE6C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agape.ReservacionVhl.UIEmpleadoMVC", "Agape.ReservacionVhl.UIEmpleadoMVC\Agape.ReservacionVhl.UIEmpleadoMVC.csproj", "{35ADEEA3-5FFE-45EE-8F70-85E76A5A1E28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6569D5FA-EDCE-4D02-9BCD-CB92D4BD4639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6569D5FA-EDCE-4D02-9BCD-CB92D4BD4639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6569D5FA-EDCE-4D02-9BCD-CB92D4BD4639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6569D5FA-EDCE-4D02-9BCD-CB92D4BD4639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761F1EDE-EE3B-4E72-ABE5-11DF49B9CED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761F1EDE-EE3B-4E72-ABE5-11DF49B9CED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761F1EDE-EE3B-4E72-ABE5-11DF49B9CED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761F1EDE-EE3B-4E72-ABE5-11DF49B9CED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF85BE68-557E-4296-A814-1A050A8127B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF85BE68-557E-4296-A814-1A050A8127B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF85BE68-557E-4296-A814-1A050A8127B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF85BE68-557E-4296-A814-1A050A8127B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF51344-91F4-4D66-89FF-57FE1B8DE6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF51344-91F4-4D66-89FF-57FE1B8DE6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF51344-91F4-4D66-89FF-57FE1B8DE6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF51344-91F4-4D66-89FF-57FE1B8DE6C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35ADEEA3-5FFE-45EE-8F70-85E76A5A1E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35ADEEA3-5FFE-45EE-8F70-85E76A5A1E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35ADEEA3-5FFE-45EE-8F70-85E76A5A1E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35ADEEA3-5FFE-45EE-8F70-85E76A5A1E28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://asproc-agape.visualstudio.com/
+		SccProjectUniqueName0 = Agape.ReservacionVhl.EN\\Agape.ReservacionVhl.EN.csproj
+		SccProjectName0 = Agape.ReservacionVhl.EN
+		SccAuxPath0 = https://asproc-agape.visualstudio.com
+		SccLocalPath0 = Agape.ReservacionVhl.EN
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Agape.ReservacionVhl.DAL\\Agape.ReservacionVhl.DAL.csproj
+		SccProjectName1 = Agape.ReservacionVhl.DAL
+		SccAuxPath1 = https://asproc-agape.visualstudio.com
+		SccLocalPath1 = Agape.ReservacionVhl.DAL
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = Agape.ReservacionVhl.WpfUI\\Agape.ReservacionVhl.WpfUI.csproj
+		SccProjectName2 = Agape.ReservacionVhl.WpfUI
+		SccAuxPath2 = https://asproc-agape.visualstudio.com
+		SccLocalPath2 = Agape.ReservacionVhl.WpfUI
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = Agape.ReservacionVhl.BL\\Agape.ReservacionVhl.BL.csproj
+		SccProjectName3 = Agape.ReservacionVhl.BL
+		SccAuxPath3 = https://asproc-agape.visualstudio.com
+		SccLocalPath3 = Agape.ReservacionVhl.BL
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName4 = Agape.ReservacionVhl.UIEmpleadoMVC\\Agape.ReservacionVhl.UIEmpleadoMVC.csproj
+		SccProjectName4 = Agape.ReservacionVhl.UIEmpleadoMVC
+		SccAuxPath4 = https://asproc-agape.visualstudio.com
+		SccLocalPath4 = Agape.ReservacionVhl.UIEmpleadoMVC
+		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,86 @@
+﻿@model Agape.ReservacionVhl.EN.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CRVA - Iniciar sesión</title>
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.js"></script>
+
+    <link href="~/content/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/css/open-iconic-bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/PagedList.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/video-estilo.css">
+    <link rel="shortcut icon" href="~/favicon.ico">
+</head>
+<body class="bg-dark" style="overflow-x:hidden;">
+    <video src="../../Img/proyecto-asproc.mp4" autoplay loop muted poster="../../Img/agape-login.png" class="hide-on-small-and-down"></video>
+    @*<img src="~/Img/agape-login.jpg" class="background-crva hide-on-small-and-down" alt="fondo-crva" />*@
+
+    <div class="row justify-content-center" style="padding-top:100px;">
+        <div class="col-sm-8 col-md-6 col-lg-4 bg-dark">
+            <div class="navbar navbar-dark bg-dark text-white">
+                <a class="navbar-brand disabled">
+                    <img src="../../favicon.ico" width="30" height="30" alt="">
+                    Reservaciones Ágape
+                </a>
+                <br />
+            </div>
+            <div class="bg-dark text-white">
+
+                @using (Html.BeginForm("LogeoCodigo", "Home", FormMethod.Post, new { @class = "col s8 offset-s2", @name = "frmLogin" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true);
+                    <br />
+                                <h5>Iniciar sesión</h5>
+                    //Contenido de formulario
+                    if (ViewBag.MensajeLogin != null)
+                    {
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Atencion!</strong> no existe un empleado con ese codigo 
+                            @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>*@
+                        </div>
+                        ViewBag.MensajeLogin = null;
+                    }
+                    else
+                    {
+                        <br />
+                    }
+
+                    <form>
+                        <div class="form-group">
+                            <label for="codeEmployee"><span class="oi oi-person"></span>  Empleado</label>
+                            @Html.PasswordFor(model => model.Code, new { @class = "form-control validate", @placeholder = "codigo de empleado", @id = "codeEmployee", @required = "" })
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-block" id="btnEnviar" value="Iniciar sesión" />
+                        <br />
+                    </form>
+                }
+            </div>
+            <div class="navbar navbar-dark text-white bg-dark">
+                <a class="navbar-brand disabled" style="font-size:small; opacity:50;">
+                    ©@DateTime.Now.Year Asociación Ágape de El Salvador
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(".alert").alert()
+</script>

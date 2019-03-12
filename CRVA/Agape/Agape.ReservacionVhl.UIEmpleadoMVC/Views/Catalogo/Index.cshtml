@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<Agape.ReservacionVhl.EN.Car>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "CRVA - Catálogo de Vehículos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /*.top {
+        margin-top: 9px;
+    }*/
+
+    .pagination li.active {
+        background-color: #343a40;
+    }
+
+    .crva-image {
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+        z-index: 2;
+        color: #ffffff;
+        cursor: default;
+        background-color: #727b84;
+        border-color: #343a40;
+    }
+</style>
+<div class="col-12" style="padding-top:20px;">
+    @using (Html.BeginForm("Index", "Catalogo", FormMethod.Get))
+            {
+        <div class="row">
+            <div class="col-8 col-md-6 col-sm-6">
+                @Html.TextBox("buscar", ViewBag.CurrentFilter as string, new { @class = "form-control", @id = "search", @placeholder = "buscar" })
+            </div>
+            <div class="col-4 col-md-4 col-sm-4">
+                <button type="submit" class="btn btn-secondary"><span class="oi oi-magnifying-glass"></span>  Buscar</button>
+            </div>
+        </div>
+    }
+    <br />
+</div>
+<div class="col-12">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <br />
+            <div class="col-sm-12 col-md-6 col-lg-4" style="padding-top:5px;">
+                <div class="card">
+                    @{
+                        var Base64 = Convert.ToBase64String(item.Image);
+                        var ImgDb = string.Format("data:image/gif;base64,{0}", Base64);
+
+                        var ConvertMarca = Convert.ToBase64String(item.Mark.Picture);
+                        var ImgMarca = string.Format("data:image/gif;base64,{0}", ConvertMarca);
+                    }
+                    <a href="@Url.Action("Index","Map", new { id =item.CarID })" class="">
+                        <img class="card-img-top" src="@ImgDb" alt="Card image cap" height="160" style="width:80%; margin-left:10%;margin-right:10%; padding-top:8px;">
+                    </a>
+                    <div class="card-body bg-light text-black">
+                        <h4 class="card-title"><img src="@ImgMarca" width="30" height="30" alt="">  @item.Code</h4>
+                        <a class="btn btn-primary btn-block text-white" href="@Url.Action("Index","Map", new { id =item.CarID })"><span class="oi oi-map-marker"></span>  Reservar</a>
+                    </div>
+                </div>
+            </div>
+                        }
+    </div>
+</div>
+<div class="col-12">
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>

@@ -1,0 +1,211 @@
+﻿<Window x:Name="frmMainMenuAdministracion" x:Class="Agape.ReservacionVhl.WpfUI.MainMenuAdministracion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Agape.ReservacionVhl.WpfUI"
+        mc:Ignorable="d"
+        Title="Menú Principal" Height="600" Width="800" 
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized" 
+        Background="#FFF1F1F1" 
+        Icon="Source/map-icon.png" MinWidth="800" MinHeight="600">
+    <Grid>
+        <!--Codigo correspondiente al cuerpo del contenido-->
+        <ScrollViewer Margin="0,72,0,0">
+            <!--Este  grid contiene todos los elementos visualizados en el cuerpo de la ventana-->
+            <Grid Margin="16" VerticalAlignment="Top">
+                <!--Con "Grid.ColumnDefinicion" definimos el numero de columnasa ocupar y delimitar el ancho de estas
+                haciendo uso de valores fijos ejemplo: 250 y datos que rellenan el resto del ancho de la ventana Ejemplo "* o Auto"
+                Nota: si no es necesario utilizar ya sea columnas o filas entonces usar la etiqueta grid normalmente
+                Ejemplo: <Grid></Grid>-->
+                <Grid.ColumnDefinitions>
+                    <!--Aqui mientras añadimos un <ColumnDefinition/> definimos una nueva columna-->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+                <!--Aqui definimos el numero de filas a utilizar-->
+                <Grid.RowDefinitions>
+                    <!--Aqui mientras añadimos un <ColumnDefinition/> definimos una nueva columna-->
+                    <!--Al agregar "Auto" en el Height decimos que el alto de la fila se ajuste al contenido dentro de esta-->
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--Aqui colocamos el contenido dentro de las cendas anteriormente establecidas-->
+                <!--Para columnas en este caso las dos que tenemos se identificas a partir del 0 como el caso de la primera columna
+                y 1a para la segunda. para las filas se sigue la misma logica 
+                Nota: "Grid.Row" es la fila y "Grid.Column" es la columna
+                Nota 2: si se quiere combinas dos columnas se utiliza en este caso "Grid.ColumnSpan="2""-->
+                <materialDesign:Card Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" Padding="20" Margin="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!--Aqui mientras añadimos un <ColumnDefinition/> definimos una nueva columna-->
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="225" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Administración de datos</TextBlock>
+                        <StackPanel Grid.Column="1">
+                            
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="1" Grid.Column="0" Padding="30" Margin="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0"  Margin="0" Name="image1"  Stretch="Uniform" Source="Source/banner.png" />
+                        <!--<Image Grid.Row="1"  Margin="0" Name="image2"  Stretch="Uniform" Source="Source/bannerReport.png" />-->
+                    </Grid>
+                </materialDesign:Card>
+                <StackPanel Grid.Row="1" Grid.Column="1"  Margin="5">
+                    <Expander HorizontalAlignment="Stretch" Header="Opciones Avanzadas">
+                        <StackPanel  Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                            <Button Name="btnBackup" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnBackup_Click">
+                                Opciones de Back-up
+                            </Button>
+                            <Button Name="btnReportCase" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnReportCase_Click">
+                                Reporte por vehículo
+                            </Button>
+                        </StackPanel>
+                    </Expander>
+                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                    <Expander HorizontalAlignment="Stretch" Header="Acerca de">
+                        <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                            <TextBlock Opacity=".68" Text="ÁGAPE, es un vocablo griego que significa: 'Amar sin condición', un amor maduro y perfecto, amar sin esperar recompensa, es el amor que Cristo practicó.                                      
+                                       La Asociación Agape de El Salvador, fue fundada el 4 de marzo de 1978, por el Padre Flavian Mucci,  sacerdote franciscano radicado en El Salvador desde 1967, con el objetivo de ayudar a través del carisma de  su obra a las personas más desprotegidas de la sociedad.
+                                       Por tanto, la Asociación Ágape de El Salvador es una institución de desarrollo humano que ejecuta programas de atención, y que combinadas con proyectos o actividades de carácter productivo generan recursos para su sostenibilidad. 
+                                       Esta filosofía ha permitido a la Asociación su permanencia en el tiempo e incrementar el impacto social; así mismo ha servido de modelo a muchas organizaciones, para implementar proyectos en el ámbito nacional e internacional." TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Expander>
+                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                    <Expander HorizontalAlignment="Stretch" Header="Políticas">
+                        <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                            <TextBlock Opacity=".68" Text="Solidaridad:
+                                                            Es ayudar a alguien sin recibir nada a cambio, ser solidario en su esencia es ser desinteresado. La solidaridad se mueve solo por la convicción de justicia e igualdad, se practica sin distinción de sexo, raza, nacionalidad, religión o afiliación política. La única finalidad de la solidaridad es el ser humano necesitado.
+                                                            Integridad:
+                                                            Hace referencia a la rectitud, probidad e intachabilidad de la organización y quienes la integran. En Ágape se realiza una gestión transparente de todos los recursos que los donantes ponen a disposición de los necesitados y que la organización en realidad solo administra.
+                                                            Liderazgo:
+                                                            Es la capacidad de influir en otras personas y de incentivarlas para que trabajen en forma entusiasta por un objetivo común. Nuestros equipos de trabajo están formados por líderes en sus áreas, lo que nos permite ser agentes de cambio para la sociedad, inspirados por el liderazgo a nivel nacional e internacional del Fundador y Presidente de la Asociación 
+                                                            Eficiencia:
+                                                            Se refiere al uso racional de los medios para alcanzar un objetivo predeterminado, es decir cumplir un objetivo con el mínimo de recursos disponibles y tiempo. En Ágape se busca gestionar los costos de modo que sean solamente los indispensables y así lograr que nuestros beneficiarios reciban toda la ayuda posible durante el tiempo que lo necesiten." TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Expander>
+                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                    <Expander HorizontalAlignment="Stretch" Header="Desarrollado por" IsExpanded="True">
+                        <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                            <TextBlock Opacity=".68" Text="-JUAN ALBERTO LINARES SIGUACHE. 
+                                                            -JULIO CESAR GARCÍA RODRÍGUEZ.
+                                                            -KELIN YAMILETH MALDONADO. 
+                                                            -CARLOS ALBERTO NÁJERA LOZANO.
+                                                            -WILLIAM OMAR PERALTA RAMOS.
+                                                            -MOISÉS ENRIQUE ESCOBAR BONILLA
+                                                            -RICARDO ANTONIO MELARA ACEVEDO. 
+                                                            -JOSÉ ROBERTO LUNA OCHOA." TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <!--fin de bloque de codigo correspondiente del cuerpo del contenido-->
+
+        <!--Codigo correspondiente al side navbar-->
+        <materialDesign:DrawerHost  BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <!--Codigo correspondiente a la barra de navegación-->
+            <StackPanel>
+                <materialDesign:ColorZone Mode="Inverted" Padding="16">
+                    <DockPanel>
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges">
+                            <ListBox>
+                                <Button Name="btnCambiarPassword" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnCambiarPassword_Click">
+                                    Ajuste de cuenta
+                                </Button>
+                                <Button Click="btnLogOut_Click" Name="btnLogOut" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}">
+                                    Cerrar Sesión
+                                </Button>
+                            </ListBox>
+                        </materialDesign:PopupBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Grid.Row="1" Grid.Column="0"  Margin="4">
+                                <materialDesign:PackIcon Kind="Menu" />
+                            </Button>
+                            <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">CONTROL DE RESERVACIONES DE VEHÍCULOS ÁGAPE</TextBlock>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+            </StackPanel>
+            <!--fin del bloque de codigo de la barra de navegacion-->
+
+            <!--Codigo correspondiente para el menú desplegable-->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <ScrollViewer Margin="0,0,0,0">
+                    <StackPanel Margin="16">
+                        <Button Name="btnCerrarPanel" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}">
+                            CERRAR PANEL
+                        </Button>
+                        <Button Name="btnMenuPrincipalAdministracion" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMenuPrincipalAdministracion_Click">
+                            Menú Principal
+                        </Button>
+                        <Button Name="btnGenerarReportes" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnGenerarReportes_Click">
+                            Reportes
+                        </Button>
+                        <!--Lista expandible-->
+                        <Grid>
+                            <StackPanel>
+                                <Expander HorizontalAlignment="Stretch" Header="Mantenimiento">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <Button x:Name="btnMantUsuario" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantUsuario_Click">
+                                            Usuario
+                                        </Button>
+                                        <Button x:Name="btnMantReservacion" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantReservacion_Click">
+                                            Reservación
+                                        </Button>
+                                        <Button x:Name="btnMantOficinas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantOficinas_Click">
+                                            Oficinas
+                                        </Button>
+                                        <Button x:Name="btnMantEmpleados" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantEmpleados_Click">
+                                            Empleados
+                                        </Button>
+                                        <Button x:Name="btnMantVehiculos" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantVehiculos_Click">
+                                            Vehículos
+                                        </Button>
+                                        <Button x:Name="btnMantMarcas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantMarcas_Click">
+                                            Marcas
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander HorizontalAlignment="Stretch" Header="Restaurar Datos">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <Button x:Name="btnRestUsuario" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestUsuario_Click">
+                                            Usuario
+                                        </Button>
+                                        <Button x:Name="btnRestReservacion" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestReservacion_Click">
+                                            Reservación
+                                        </Button>
+                                        <Button x:Name="btnRestOficinas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestOficinas_Click">
+                                            Oficinas
+                                        </Button>
+                                        <Button x:Name="btnRestEmpleados" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestEmpleados_Click">
+                                            Empleados
+                                        </Button>
+                                        <Button x:Name="btnRestVehiculos" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestVehiculos_Click">
+                                            Vehículos
+                                        </Button>
+                                        <Button x:Name="btnRestMarcas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestMarcas_Click">
+                                            Marcas
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </Grid>
+                        <!--Fin de la Lista expandible-->
+                    </StackPanel>
+                </ScrollViewer>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <!--Fin del bloque de codigo correspondiente del menu desplegable-->
+        </materialDesign:DrawerHost>
+        <!--fin del bloque de codigo correspondiente al side navbar-->
+    </Grid>
+</Window>

@@ -1,0 +1,12 @@
+﻿h2 {
+    color: white;
+}
+
+#centro {
+    position:absolute;
+    left: 50%;
+}
+#barra {
+    height: 150px;
+    background: #0094ff;
+}

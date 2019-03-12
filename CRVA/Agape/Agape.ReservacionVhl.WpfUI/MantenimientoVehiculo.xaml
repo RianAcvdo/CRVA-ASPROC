@@ -1,0 +1,255 @@
+﻿<Window x:Name="frmMantenimientoVehiculo" x:Class="Agape.ReservacionVhl.WpfUI.MantenimientoVehiculo"
+        Title="Mantenimiento Vehículo" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Agape.ReservacionVhl.WpfUI"
+        mc:Ignorable="d"
+        Height="600" Width="800" WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized" 
+        Background="#FFF1F1F1" 
+        Icon="Source/map-icon.png" MinWidth="800" MinHeight="600" Loaded="frmMantenimientoVehiculo_Loaded" KeyDown="frmMantenimientoVehiculo_KeyDown">
+    <Grid>
+        <!--Codigo correspondiente al cuerpo del contenido-->
+        <ScrollViewer Margin="0,72,0,0">
+            <materialDesign:Card Padding="20" Margin="20">
+                <Grid Margin="16" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <!--Aqui mientras añadimos un <ColumnDefinition/> definimos una nueva columna-->
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--Aqui definimos el numero de filas a utilizar-->
+                    <Grid.RowDefinitions>
+                        <!--Aqui mientras añadimos un <ColumnDefinition/> definimos una nueva columna-->
+                        <!--Al agregar "Auto" en el Height decimos que el alto de la fila se ajuste al contenido dentro de esta-->
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="250" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBox  Margin="16 10 8 5" Grid.Row="1" Grid.Column="1" x:Name="txtMatricula" materialDesign:HintAssist.Hint="Matricula" PreviewTextInput="txtMatricula_PreviewTextInput">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                        <DatePicker Margin="8 10 16 5" x:Name="txtFecha" materialDesign:HintAssist.Hint="Fecha de adquisición" IsManipulationEnabled="False" Focusable="False">
+                        </DatePicker>
+                    </StackPanel>
+                    
+                    <!--Combo solucion-->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                        <ComboBox  Margin="50 0 50 0" Grid.Row="1" Grid.Column="1"
+                                   x:Name="cmbMarca" SelectionChanged="cmbMarca_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Picture}" Height="45" Width="45" Margin="10 0 10 0"/>
+                                        <TextBlock Margin="10 0 0 0" VerticalAlignment="Center" Foreground="Black" Text="{Binding Name}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <Button x:Name="btnMarcaAnterior" Height="30" Width="30"
+                            HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"
+                            Margin="16 0 0 0" ToolTip="Anterior" Click="btnMarcaAnterior_Click"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        <materialDesign:PackIcon Kind="ArrowLeftBold" Height="25" Width="25" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="btnMarcaSiguiente" Height="30" Width="30"
+                            HorizontalAlignment="Right" Grid.Row="0" Grid.Column="3"
+                            Margin="0 0 10 0" ToolTip="Siguiente" Click="btnMarcaSiguiente_Click"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        <materialDesign:PackIcon Kind="ArrowRightBold" Height="25" Width="25" HorizontalAlignment="Center"/>
+                    </Button>
+                    <!--Fin Combo solucion-->
+                    
+                    <StackPanel Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4">
+                        <!--<TextBox  Margin="16 0 16 30" Grid.Row="1" Grid.Column="1" x:Name="txtMatricula" materialDesign:HintAssist.Hint="Matricula" >
+                        </TextBox>-->
+
+                        <!--combo box de marcas con imagenes-->
+                        <!--<ComboBox  Margin="16 0 16 10" Grid.Row="1" Grid.Column="1" x:Name="cmbMarca">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Picture}" Height="25" Width="25"/>
+                                        <TextBlock Margin="10 0 0 0" VerticalAlignment="Center" Foreground="Black" Text="{Binding Name}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>-->
+
+                        <!--combo box por defecto-->
+                        <!--<ComboBox  Margin="16 0 16 30" Grid.Row="1" Grid.Column="1" x:Name="cmbMarca" materialDesign:HintAssist.Hint="Marca">
+                        </ComboBox>-->
+                        <!--<TextBox  Margin="16 0 16 30" Grid.Row="1" Grid.Column="1" x:Name="cmbMarca" materialDesign:HintAssist.Hint="Marca" PreviewTextInput="txtMarca_PreviewTextInput">
+                        </TextBox>-->
+                        <TextBox  Background="WhiteSmoke" Margin="16 0 16 0"  x:Name="txtDetalle" TextWrapping="Wrap"
+                                  materialDesign:HintAssist.Hint="Detalle"
+                                  AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                                  SpellCheck.IsEnabled="True" Height="60" PreviewTextInput="txtDetalle_PreviewTextInput">
+                        </TextBox>
+                        <!--<DatePicker  Width="135" HorizontalAlignment="Left" Margin="16 0 16 30" x:Name="txtFecha" materialDesign:HintAssist.Hint="Fecha de adquisición" IsManipulationEnabled="False" Focusable="False">
+                        </DatePicker>-->
+                        <!--<TextBox  Margin="16 0 16 30"  x:Name="txtBuscar" materialDesign:HintAssist.Hint="Buscar">
+                        </TextBox>-->
+                    </StackPanel>
+                    
+                    <!--file upload-->
+                    <TextBox Grid.Column="5" Grid.Row="2" Name="txtFileName" Margin="0 0 0 30"  materialDesign:HintAssist.Hint="Imagen del vehículo" Visibility="Hidden" />
+
+                    <Button Name="btnLoadFile" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnLoadFile_Click" Height="200" MinWidth="250" Style="{DynamicResource MaterialDesignToolButton}">
+                        <!--<materialDesign:Card Name="MTCar" Margin="0"  HorizontalAlignment="Center" VerticalAlignment="Center" >-->
+                            <Image Margin="0 0 0 0" Name="imgVehiculo"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="200" MinHeight="200" MinWidth="250" Source="/Source/upload.png"/>
+                        <!--</materialDesign:Card>-->
+                    </Button>
+                   
+                    <!--Botones de Mantenimiento-->
+                    <Button Width="97"  Name="btnGuardar" Grid.Row="3" Grid.Column="0" Margin="4" HorizontalAlignment="Center" Click="btnGuardar_Click">
+                        Guardar
+                    </Button>
+                    <!--<Button Width="95"  Name="btnBuscar" Grid.Row="1" Grid.Column="1" Margin="4" HorizontalAlignment="Center" Click="btnBuscar_Click">
+                        Buscar
+                    </Button>-->
+                    <Button Width="97"  Name="btnModificar" Grid.Row="3" Grid.Column="1" Margin="4" HorizontalAlignment="Center" Click="btnModificar_Click">
+                        Modificar
+                    </Button>
+                    <Button Name="btnEliminar" Width="97"  Grid.Row="3" Grid.Column="2" Margin="4" HorizontalAlignment="Center" Click="btnEliminar_Click">
+                        Inhabilitar
+                    </Button>
+                    <Button Name="btnCancelar" Width="97"  Grid.Row="3" Grid.Column="3" Margin="4" HorizontalAlignment="Center" Click="btnCancelar_Click">
+                        Cancelar
+                    </Button>
+
+                    <!--Paginacion inicio-->
+                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" Width="150" Name="btnPrevius" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="4" HorizontalAlignment="Right" Click="btnPrevius_Click">
+                        Anterior
+                    </Button>
+                    <TextBlock Name="tbPaginacion" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="1" Margin="0 15 0 0" HorizontalAlignment="Stretch"></TextBlock>
+                    <Button Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" Width="150" Name="btnSiguiente" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="4" HorizontalAlignment="Left" Click="btnSiguiente_Click">
+                        Siguiente
+                    </Button>
+                    <!--Paginacion Fin-->
+
+                    <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Margin="0 30 0 0" HorizontalAlignment="Right">Buscar</TextBlock>
+                    <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Margin="16 0 16 0" x:Name="txtBuscar" materialDesign:HintAssist.Hint="Escribir aquí..." KeyUp="txtBuscar_KeyUp">
+                    </TextBox>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Margin="0 24 0 0">Lista de Vehículos</TextBlock>
+                    <ScrollViewer Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" Margin="0 8 0 0">
+                        <StackPanel>
+                            <DataGrid IsReadOnly="True" Name="dgvVehiculo" Margin="0 8 0 0" CanUserSortColumns="True" CanUserAddRows="False" AutoGenerateColumns="False" materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8" SelectionChanged="dgvVehiculo_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Code}" Header="Matrícula" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Mark.Name}" Header="Marca" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Details}" Header="Detalles" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Date}" Header="Fecha de adquisición" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                                    <!--<materialDesign:MaterialDataGridTextColumn Binding="{Binding State}" Header="Estado" MaxLength="255" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />-->
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </materialDesign:Card>
+        </ScrollViewer>
+        <!--fin de bloque de codigo correspondiente del cuerpo del contenido-->
+
+        <!--Codigo correspondiente al side navbar-->
+        <materialDesign:DrawerHost  BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <!--Codigo correspondiente a la barra de navegación-->
+            <StackPanel>
+                <materialDesign:ColorZone Mode="Inverted" Padding="16">
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Left}" Grid.Row="1" Grid.Column="0"  Margin="4">
+                                <materialDesign:PackIcon Kind="Menu" />
+                            </Button>
+                            <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">CONTROL DE RESERVACIONES DE VEHÍCULOS ÁGAPE</TextBlock>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+            </StackPanel>
+            <!--fin del bloque de codigo de la barra de navegacion-->
+
+            <!--Codigo correspondiente para el menú desplegable-->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <ScrollViewer Margin="0,0,0,0">
+                    <StackPanel Margin="16">
+                        <Button Name="btnCerrarPanel" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}">
+                            CERRAR PANEL
+                        </Button>
+                        <Button Name="btnMenuPrincipalAdministracion" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMenuPrincipalAdministracion_Click">
+                            Menú Principal
+                        </Button>
+                        <!--<Button Name="btnGenerarReportes" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}">
+                            Reportes
+                        </Button>-->
+                        <!--Lista expandible-->
+                        <Grid>
+                            <StackPanel>
+                                <Expander HorizontalAlignment="Stretch" Header="Mantenimiento">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <Button x:Name="btnMantUsuario" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantUsuario_Click">
+                                            Usuario
+                                        </Button>
+                                        <Button x:Name="btnMantReservacion" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantReservacion_Click">
+                                            Reservación
+                                        </Button>
+                                        <Button x:Name="btnMantOficinas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantOficinas_Click">
+                                            Oficinas
+                                        </Button>
+                                        <Button x:Name="btnMantEmpleados" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantEmpleados_Click">
+                                            Empleados
+                                        </Button>
+                                        <Button x:Name="btnMantVehiculos" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantVehiculos_Click">
+                                            Vehículos
+                                        </Button>
+                                        <Button x:Name="btnMantMarcas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnMantMarcas_Click">
+                                            Marcas
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander HorizontalAlignment="Stretch" Header="Restaurar Datos">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <Button x:Name="btnRestUsuario" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestUsuario_Click">
+                                            Usuario
+                                        </Button>
+                                        <Button x:Name="btnRestReservacion" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestReservacion_Click">
+                                            Reservación
+                                        </Button>
+                                        <Button x:Name="btnRestOficinas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestOficinas_Click">
+                                            Oficinas
+                                        </Button>
+                                        <Button x:Name="btnRestEmpleados" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestEmpleados_Click">
+                                            Empleados
+                                        </Button>
+                                        <Button x:Name="btnRestVehiculos" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestVehiculos_Click">
+                                            Vehículos
+                                        </Button>
+                                        <Button x:Name="btnRestMarcas" Margin="4" HorizontalAlignment="Left" Style="{DynamicResource MaterialDesignFlatButton}" Click="btnRestMarcas_Click">
+                                            Marcas
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </Grid>
+                        <!--Fin de la Lista expandible-->
+                    </StackPanel>
+                </ScrollViewer>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <!--Fin del bloque de codigo correspondiente del menu desplegable-->
+        </materialDesign:DrawerHost>
+        <!--fin del bloque de codigo correspondiente al side navbar-->
+    </Grid>
+</Window>

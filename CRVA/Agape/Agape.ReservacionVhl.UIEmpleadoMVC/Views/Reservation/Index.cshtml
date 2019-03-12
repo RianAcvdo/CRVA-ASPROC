@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Agape.ReservacionVhl.EN.Reservation>
+
+@{
+    ViewBag.Title = "CRVA - Reservaciones";
+}
+
+<div class="col-12" style="padding-top:20px;">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <br />
+            <div class="col-sm-12 col-md-6 col-lg-4" style="padding-top:5px;">
+                <div class="card">
+                    @{
+                        var Base64 = Convert.ToBase64String(item.Car.Image);
+                        var ImgDb = string.Format("data:image/gif;base64,{0}", Base64);
+
+                        var ConvertMarca = Convert.ToBase64String(item.Car.Mark.Picture);
+                        var ImgMarca = string.Format("data:image/gif;base64,{0}", ConvertMarca);
+                    }
+                    <a class="">
+                        <img class="card-img-top" src="@ImgDb" alt="Card image cap" height="160" style="width:80%; margin-left:10%;margin-right:10%; padding-top:8px;">
+                    </a>
+                    <div class="card-body bg-light text-black">
+                        <h4 class="card-title"><img src="@ImgMarca" width="40" height="40" alt=""> @item.Car.Code</h4>
+                        <p class="card-text">
+                            <strong>Fecha</strong> @item.Date.ToShortDateString() - <strong>@item.Kilometers km</strong> 
+                            <br /><strong>Origen</strong>
+                            <br />@item.Origin
+                            <br /><strong>Destino</strong>
+                            <br />@item.Destination
+                        </p>
+                        <a class="btn btn-danger btn-block text-white" href="@Url.Action("CancelarReservacion","Reservation", new { id =item.ReservationID })"><span class="oi oi-thumb-down"></span>  Cancelar</a>
+                        @*<p class="card-text"><small class="">@Html.ActionLink("Cancelar", "CancelarReservacion", new { id = item.ReservationID }, new { @class = "text-danger" })</small></p>*@
+                    </div>
+                </div>
+            </div>
+                        }
+    </div>
+</div>
+
+@*<div style="margin:40px;">
+
+    <h3 style="color:gray;">Reservaciones CRVA</h3>
+    <b>Empleado:</b> @Session["Name"]&nbsp;@Session["LastName"]
+    <p>
+        @Html.ActionLink("Regresar", "Index", "Catalogo", new { id = Session["UserID"] }, new { @class = "btn blue darken-4 waves-effect waves-light text-flow"})
+    </p>
+    <table class="table striped bordered responsive-table">
+        <tr>
+            <th>
+                Matrícula
+            </th>
+            <th>
+                Marca
+            </th>
+            <th>
+                Partida
+            </th>
+            <th>
+                Destino
+            </th>
+            <th>
+                Fecha de reserva
+            </th>
+            <th>
+                Estado de reserva
+            </th>
+            <th>Cancelar</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Mark.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Origin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Action)
+                </td>
+                <td>
+                    <div class="col s6 m6 l6">
+                       <i class="medium material-icons tooltipped" data-position="left" data-delay="50" data-tooltip="Cancelar reservación">  @Html.ActionLink("cancel", "CancelarReservacion", new { id = item.ReservationID }, new { @class = "red-text darken-4 "})</i>
+                    </div>
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.tooltipped').tooltip({ delay: 50 });
+    });
+</script>*@
